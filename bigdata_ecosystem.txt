@@ -1,0 +1,39 @@
+Map Reduce 
+--------------
+Programming model : using two functions 
+map and reduce 
+Distributed implementation 
+
+Map function - take input from user and gives a key/value pair (intermediate key value)
+Reduce function - merge the intermediate value that we passed it other value which has the same key
+
+abstracted away distributed computing framework 
+took care of parellelising and executing 
+
+Master and worker node , fault tolerance. 
+final result in partitioned file system (at least what google did )
+
+Hadoop and HDFS 
+--------------------------
+Hadoop comprise of four modules 
+
+hadoop common - base framework for hadoop containing all of the libraries and startup scripts required 
+hadoop distributed filesystem (hdfs) 
+hadoop yarn - handles the task of resource management. job scheduling and other things 
+hadoop mapreduce - hadoops own implementation of the map reduce model 
+
+overview of hadoop cluster 
+----------------------------
+master and server architecture 
+master runs the namenode - all the metadata of the filesystem 
+Data nodes or workers - files are stored here and these files are stored in reliable blocks 
+
+
+Apache Pig 
+----------------
+Its used for analysing , cleaning, formatting large dataset in hadoop. 
+There is also hive which is mostly used for structured data . 
+Apache pig can be used to analyse unstructured data 
+uses the language pig latin 
+code written in pig latin is compilted into map reduce job same
+

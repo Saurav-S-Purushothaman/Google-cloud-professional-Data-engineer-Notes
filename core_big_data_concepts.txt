@@ -4,7 +4,8 @@ Datalab - jupyter notebooks
 Data studio - Data visualization tool 
 
 -----------------------------------
-Chapter 1 - core big data concepts 
+CORE BIG DATA CONCEPTS 
+------------------------------
 Big data - charecterised by 3vs - volume, velocity and variety 
 
 Data warehouse - data is structured and rigid , processed, 
