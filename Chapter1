@@ -1,0 +1,36 @@
+Data flow - is serverless implementation of Apache Beam 
+pub/sub - similar to kafka. Can handle millions of messages per second 
+Datalab - jupyter notebooks 
+Data studio - Data visualization tool 
+
+-----------------------------------
+Chapter 1 - core big data concepts 
+Big data - charecterised by 3vs - volume, velocity and variety 
+
+Data warehouse - data is structured and rigid , processed, 
+Data lake - raw or unstructured data, more flexible, ready to analyse 
+
+OLTP - online transactional processing - high volume , short , high integrity needed
+OLAP - online analytical processing - low volume, produce reports and analytics 
+
+OLTP modify the database ,  OLAP query the database 
+
+sql and no sql 
+sql -tabular format 
+nosql - stores other than sql 
+includes - key-value stores, json-document-stores 
+
+Batch vs streaming
+----------------------
+Batch - data gathered within a defined window period , large volumes of data 
+Streaming - Continuous collection of data. Near real time analytics is possible. Windows and micro batches also possible 
+
+Data processing pipelines 
+----------------------
+pipelines are system that allows data to go from a to b to c to d in most optimized manner 
+  
+  stages of data pipelines 
+  ingestion >> storage >> processing >> visualisation 
+
+  ingestion - ingesting data from different source to data warehouse or data lake 
+  
