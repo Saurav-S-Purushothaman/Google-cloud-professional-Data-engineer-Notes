@@ -37,3 +37,56 @@ Apache pig can be used to analyse unstructured data
 uses the language pig latin 
 code written in pig latin is compilted into map reduce job same
 
+Apache spark 
+------------------
+map reduce program had one limitation - that is linear flow of data 
+General purpose cluster computing framework 
+concurrent computational job to be run accross massive dataset 
+-Resilient distributed data multiset -  where data is replicated accross multiple cluster 
+without the reading and writing of the map reduce model 
+
+Fours standard modules of spark 
+-----------------------
+1. Spark sql - for working with structured data in spark. structured data is stored in an abstraction called dataframe 
+2. spark streaming - configure streaming data ingestion in addition to batch processing 
+3. MLLib - ml library which supports all the machine learning algorithm you'd expect 
+4. GraphX - for iterative graph computation 
+
+To run apache spark two things are required -
+1. cluster manager - will run on stand alone cluster in hadoop yarn, kubernetes
+2. distributed storage system - hdfs, hbase, cassandra 
+
+in hadoop data is stored in disk before and after computation 
+spark uses memory for the computation reducing the time for disk io 
+spark is low latency system and hadoop is high latency system 
+
+
+---------
+Apache kafka 
+--------
+
+kafka - stream processing system 
+message bus but with data 
+
+four main api provided by kafka servers 
+---------------------------------------
+Producer - allows an application to publish a stream of record to kafka topic 
+consumer - allows an application to subscribe one or more topics and process the stream of record 
+streams - allow an application to be a stream processing one - like publish data like stream 
+connector - allow producer or consumer to connect to external system like rdbms 
+
+
+producer publish to kafka cluster 
+consumer consume from kafka cluster 
+
+in kafka cluster there is replication for fault tolerence
+a single topic span one or more partition for fault tolerence 
+in these partition, there is leader node and follower node 
+configuration and management of the kafka cluster is managed by apache zookeeper 
+
+kafka vs pub/sub
+--------------
+There is guarantee of ordering in kafka, no such thing in pub/sub
+Tuneable message retention , message  retention is configured to 7 days 
+push subscribtion method is not supported by kafka, its supported by pub/sub. 
+Unmanaged -kafka, managed - pub/sub 

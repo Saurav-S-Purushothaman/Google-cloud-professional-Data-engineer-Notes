@@ -1,0 +1,81 @@
+pub sub handles messaging and event ingestion at a global level 
+
+Why messaging middleware even required ? 
+all the messages from different source are split into different topics of messages 
+
+its is serverless and fully managed service 
+supports multiple pub/sub patterns
+real time or batch processing 
+integrate with cloud dataflow 
+integrate pub/sub with cloud dataflow 
+
+use cases 
+distributing workloads , asynchronous flow, distributing event notification , distributing logging , device data streaming 
+
+Basics of pub/sub 
+----------------
+One to one 
+producer/publisher >> topic >> subsriber 
+messages sent to topic are qued are ready to be read 
+
+one to many -> more than one subscriber to a single topic 
+many to many -> one to one but with many topics 
+many to one -> many publishers but only one subscriber 
+
+publishing a message 
+-------------------
+create a message containing your data . base64 encoded, 10mb or less
+send a request to the pub/sub api specifying the topic to which its published 
+
+create a subscription to a topic 
+two type of subscription 
+-pull (defualt) - pull request to the pub/sub api specifying the topic to which its subscribed 
+when you receive the message, acknowledge that the message is received, otherwise it will remain in the top of the queue
+
+-push subscription - push will send a message to an endpoint - valid https with valid ssl cert 
+
+--------------------------------------
+pub/sub client library for all popular programming languages are available 
+events in  pub/sub can be used to trigger cloud function 
+cloud run can be the receiver of the push subscription 
+-------------------------------\
+hands on 
+-------------
+to view the topic created 
+glcoud pubsub topics list 
+
+to create a topic 
+gcloud pubsub topics create Labtopic2 
+
+to delete a topic 
+gcloud pubsub topics delete <topicname> 
+
+to create subscription for topic 
+gcloud pubsub subscriptions create --topic <topic name> <name of the subscription> 
+
+to list all the subscriptions 
+gcloud pubsub subscriptions list 
+
+to list all the subscriptiont to a specific topic 
+gcloud pubsub topics list-subscriptions <name of the topic > 
+
+to publish a messge in topic 
+gcloud pubsub  topics publish <topic name> --message "this is the message" 
+
+to get/pull the message from the topic use the command 
+gcloud pubsub subscriptions pull <name of the subscription> --auto-ack 
+
+-------------------------------------------------------------
+use pubsub through python 
+----
+commands 
+pip install --upgrade google-cloud-pubsub
+----
+after you downloaded the publisher.py and subscriber.py in your project directory use this command to create topics and subscriptions 
+
+python publisher.py <project id > create topicname 
+python subscriber.py <project id> create <topic name> <subscription name > 
+
+now to receive messages - there is aa receiver method that receieves messages in non blocking way so we have to keep the main thread alive 
+
+python subscriber.py <project name> receive <name of the subscription> 
