@@ -79,3 +79,20 @@ python subscriber.py <project id> create <topic name> <subscription name >
 now to receive messages - there is aa receiver method that receieves messages in non blocking way so we have to keep the main thread alive 
 
 python subscriber.py <project name> receive <name of the subscription> 
+---------------------------------------------------------
+
+Advanced pubsub 
+----------------
+message delivered at least once policy 
+therefore you may receive same message more than once but it can be handled 
+message published before a subscription is created cannot be be delivered to the subscription 
+
+seeking and snapshot are the feature to do so 
+seeking going back to the timestamp required
+snapshot - taking the snapshot at a particular time and going back to the snapshoted place 
+
+ordering is not possible 
+if ordering is really required then  
+use timestamp to the sent message so that it can be ordered later 
+
+Loosely couples services with cloud pubsub 
