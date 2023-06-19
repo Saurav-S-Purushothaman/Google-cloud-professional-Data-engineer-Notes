@@ -5,6 +5,13 @@ def my_function(*args, **kwargs):
     for key, value in kwargs.items():
         print("this is from kwargs : "  + key, value)
 
+def generate_numbers():
+    for i in range(1, 6):
+        yield i
 
-
-my_function(path ={"this"})
+# Using the generator function
+numbers = generate_numbers()
+print(type(numbers))
+# Iterating over the generator
+for i in range(5):
+    print(next(numbers))

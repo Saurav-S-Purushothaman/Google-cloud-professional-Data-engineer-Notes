@@ -1,1 +1,140 @@
 # this feature is similar to apache beam 
+
+Very good for etl jobs 
+Cloud dataflow is executed as jobs with one or more workers carrying out a specific task 
+Fully managed and serverless 
+Uses open source apache beam sdk 
+Pipelines defined in beam models are processed efficiently using parallel processing 
+dataflow also supports real time streaming and batch jobs 
+stackdriver integration for logging and monitoring the pipelines 
+data flow 
+source >> pipeline >> sink 
+apache beam connecters allows read data from source and then write data into the sink 
+data sources example - cloud pub/sub , bigquery and cloud storage (kafak (external))
+sink - cloud storage, bigquerya and bigtable 
+
+Driver program and the runner program 
+Driver is the program that you write using the apache sdk - its written in java or python 
+driver program difines the pipeline
+it is submitted to a runner 
+Driver program is submitted to a runner for processing 
+Runner - software that manages execution of our pipeline 
+runner act as translator for backend execution framework
+backend system - massively parallel processing system 
+runner can also manage local execution of our data program for testing and debugging 
+
+PCollections are used in pipeline
+it represent data as it is transformed 
+it represent - distributed multi element dataset 
+PCollection can represent both batch and streaming data 
+data can come in two form - bounded and unbounded 
+bounded - when data comes from a fixed source 
+unbounded - when data comes continuously 
+
+transform represent a step within data pipeline 
+transform take PCollection as input and PCollection as output 
+input - one or more, output - zero or more 
+-----------------------------------------------------------------------
+
+Pipeline developmental lifecycle 
+--------
+Design >> create >> testing (local unit testing in local machine is preffered )
+
+Design:
+  Start with location of data. what are the source and what should be the sink 
+  input datastructure and format 
+  Transformation objectives : what are you trying to do with the data
+  Output data structure and location
+
+Pipeline structure :
+it can have linear structure
+It can also have branched structure 
+Data flow pipeline represents a directed acyclic graph 
+
+
+Driver program 
+------------
+1. Create a pipeline object 
+2. Create a PCollection using read or craete transform 
+3. Apply multiple transform as required 
+4. Finish up by writing ouput PCollection 
+
+Runner 
+-----------
+After writing the driver program, execute the pipeline using a pipeline runner 
+
+
+Dataflow pipeline concepts 
+--------------------------
+Pardo transform
+aggregration transform
+Core beam transform
+
+Pardo Transform - generic parallel processing transformm
+Scenario
+PCollection1 to PCollection2...we are using pardo Transform
+so each element in PCollection one will give output to PCollection2
+each element may give one output , zero output or multiple output
+
+if we want, we can specify a user defined function to provide a user defined operation to each element on a PCollection
+
+Aggregration functions
+process of computing a single value from multiple input elements
+
+Elements of PCollections should have same datatype
+Immutable or unchanging
+Bounded or unbounded
+A timestamp is associated with every element of PCollection
+
+GroupByKey transform for processing collection of key value pairs
+CoGroupByKey for processing/combining key value pairs of multiple PCollection
+Combine - to combine PCollections
+Flatten - transform multiple PCollection to a single logical PCollection
+Parition - gives the logic of how the elements
+
+Eventtime - time at which data element occurs, it is determined by the timestamp in the data element itself
+Processing time - different time the data is processed during the transit through pipeline
+
+Windowing - mostly used in unbounded PCollection
+it is used to subdevide a PCollection according to different time window
+
+type of windows
+fixed time window - constant non overlapping time interval
+Sliding window - can overlap . so its possible that one element can belong to more than one window
+eg. one minute window starting every 10 sec
+usefull for averaging and other stuffs
+Per session window - if there is a disruption. Usefull for irregularly distributed data with rescpect to time
+By default - its single global window wrapping every element in the collection
+
+Watermark - eventime and process time are different
+so inorder to make sure that all the data of a certain window has arrived, we use watermark
+so if data arrive after the watermark, then its called late data, you can do what you want to do with late data
+
+Dataflow and security access
+
+Cloud data flow can be run locally on your machine
+Generally run in machine for small dataset to test the data
+by installing apache beam sdk on local machine
+Then cloud dataflow managed service
+
+Gcp service account
+cloud data flow service - Dataflow service account
+worker instances - controller service account
+
+Your driver program defines your pipeline, the pipeline is submitted to GCP Cloud Dataflow servicefor processing.
+The Cloud Dataflow service will create a Cloud Dataflow job.
+The job creates and manages workers that carry out various tasks for executing the pipeline.
+As part of the execution of the pipeline, the workers need access to various resources such as files stored on Cloud storage.
+The Cloud Dataflow job can be monitored using the Cloud Dataflow Monitoring Interface or the Command-line Interface.
+
+Using cloud dataflow
+Regional endpoint - manages metadata
+control cloud dataflow workers
+
+Customer managed encryption keys are used
+Really good for map reduce
+
+Develop and run cloud dataflow job from bigquery web ui
+cloud dataflow sql integrates with apache beam sql
+
+Its so simple. Just write your apache beam code and then run using dataflow workers
